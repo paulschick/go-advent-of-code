@@ -23,3 +23,25 @@ Up - Depth - n
 
 Final result is horizontal * depth
 
+## Part Two
+
+down - aim + n
+up - aim - n
+forward:
+  - horizontal + n
+  - depth = aim * n
+
+So now down and up only affect aim. Forward will update horizontal
+and depth. The final value is again, horizontal * depth.
+
+### Update to Part Two
+
+In this part *order does matter*. So I am unable to parse this the
+same way. I can still use the struct methods that I wrote, but unfortunately
+I cannot use the directions map that I created in the first step.
+
+I'm going to have to parse the directions line by line instead. This is due
+to the fact that the multiplication factor is going to be different at different
+points in the instructions.
+
+This shouldn't be a difficult change.
