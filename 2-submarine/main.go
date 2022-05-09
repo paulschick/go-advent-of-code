@@ -45,8 +45,28 @@ func GetDirectionsMap(lines []string) map[string]int {
   return directions
 }
 
+func ParseDirections(directions map[string]int) int64 {
+  horizontal, exists := directions["forward"]
+  if !exists {
+    log.Fatal("Unable to parse forward directions")
+  }
+
+  down, exists := directions["down"]
+  if !exists {
+    log.Fatal("Unable to parse forward directions")
+  }
+
+  up, exists := directions["up"]
+  if !exists {
+    log.Fatal("Unable to parse forward directions")
+  }
+
+  vertical := down - up
+
+  return int64(vertical * horizontal)
+}
+
 func main() {
   lines := ReadLines()
-  directions := GetDirectionsMap(lines) 
-  fmt.Println(directions)
+  fmt.Println("Location: ", ParseDirections(GetDirectionsMap(lines)))
 }
