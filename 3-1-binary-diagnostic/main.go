@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math"
 	"strconv"
 	"strings"
-	// "unicode/utf8"
 )
 
 func ReadLines() []string {
@@ -93,10 +93,24 @@ func GetEpsilon(lines []string) []int64 {
   return epsilon
 }
 
+func GetDecimal(values []int64) int64 {
+  highestPower := len(values) - 1
+  currentValue := int64(0)
+  base := 2
+
+  for i := 0; i <= highestPower; i++ {
+    power := highestPower - i
+    poweredBase := math.Pow(float64(base), float64(power))
+    currentInt := int(values[i])
+    result := currentInt * int(poweredBase)
+    currentValue = currentValue + int64(result)
+  }
+
+  return currentValue
+}
+
 func main() {
   lines := ReadLines()
-  gamma := GetGamma(lines)
-  fmt.Println("Gamma: ", gamma)
-  epsilon := GetEpsilon(lines)
-  fmt.Println("Epsilon: ", epsilon)
+  multiple := GetDecimal(GetGamma(lines)) * GetDecimal(GetEpsilon(lines))
+  fmt.Println("Multiplied Result: ", multiple)
 }
