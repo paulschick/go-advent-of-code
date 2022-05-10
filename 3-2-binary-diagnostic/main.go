@@ -7,6 +7,7 @@ import (
 	"math"
 	"strconv"
 	"strings"
+  "binary-diagnostic/concurrent-solution"
 )
 
 func ReadLines() []string {
@@ -160,4 +161,5 @@ func Calculate() {
 
 func main() {
   Calculate()
+  conc.HelloTest()
 }
